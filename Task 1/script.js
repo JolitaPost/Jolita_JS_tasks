@@ -36,5 +36,5 @@ function convertToKg(kgAmount) {
     return result;
 }
 
-const amountOfKg = convertToKg(5);
+const amountOfKg = convertToKg(10);
 console.log(amountOfKg);
