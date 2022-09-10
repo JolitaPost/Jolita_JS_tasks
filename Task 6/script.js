@@ -20,25 +20,24 @@ const users = [
   { id: '9', name: 'Daniel Cane', age: 51 },
 ];
 
-//---------------6.1------------------------------
+//---------------6.1----------------------------
 
-const usersAge = users.map((users) => users.age);
-
-const getTotal = (total, num) => {
-  return total + num;
+const getUserAverageAge = (arr = []) => {
+  const {sum, count} = arr.reduce((acc, val) => {
+    let {sum, count} = acc;
+    sum += val.age;
+    count++;
+    return { sum, count};
+  }, {
+    sum: 0, count: 0
+  });
+  return (sum / (count || 1));
 };
-
-console.log(usersAge.reduce(getTotal,0));
-
-const getUserAverageAge = (array) => {
-  return array.reduce(getTotal, 0) / array.lenght;
-};
-
-console.log(getUserAverageAge(usersAge));
+console.log(getUserAverageAge(users));
 
 //----------------6.2-------------------
 
 const getUsersNames = users.map((users) => {
   return users.name;
 });
-console.log(getUsersNames);
+console.log(getUsersNames)
