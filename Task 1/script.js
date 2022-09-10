@@ -8,33 +8,25 @@ pamatyti jo pateikto svorio kovertavimą į:
 Pastaba: atvaizdavimas turi būti matomas pateikus formą ir pateikiamas
 <div id="output"></div> viduje, bei turi turėti bent minimalų stilių;
 ------------------------------------------------------------------- */
-const formElement = document.getElementsByName('form');
-const convertButton = document.getElementById('submit-btn');
-const inputElement = document.getElementById('search');
-const convertedResult = document.getElementById('output');
-/*
-formElement.addEventListener('submit', (event) => {
+const form = document.getElementById('converter-form');
+const kgInput = document.getElementById('search');
+const output = document.getElementById('output');
+const toSelect = document.getElementById('toSelect');
+
+form.addEventListener('submit', (event) => {
     event.preventDefault();
-})
-*/
+    const toValue = toSelect.value;
+    const convertedValue = converter(toValue);
+    output.textContent = convertedValue;
+ });
 
-const lbAmount = 2.2046;
-const gAmount = 0.0010000;
-const ozAmount = 35.274;
-
-
-convertButton.addEventListener('click', function() {
-    const lbAmount = inputElement.value;
-    const kgAmount = convertToKg(lbAmount);
-    convertedResult.textContent = kgAmount;
-})
-
-
-function convertToKg(kgAmount) {
-    const result = kgAmount * lbAmount;
-    console.log(result);
-    return result;
-}
-
-const amountOfKg = convertToKg(10);
-console.log(amountOfKg);
+ const converter = (to) => {
+    const kg = Number(kgInput.value);  
+    if (to === 'lb') {
+        return `${kg}kg = ` + kg * 2.2046 + ` lb`;
+    } else if (to === 'g') {
+        return `${kg}kg = ` + kg / 0.0010000 + ` g`;
+    } else if (to === 'oz') {
+        return `${kg}kg = ` + kg * 35.274 + ` oz`;
+    }
+ }
